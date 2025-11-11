@@ -49,8 +49,8 @@ locals {
       {
         name = local.kubeconfig_context
         cluster = {
-          certificate-authority-data = data.aws_eks_cluster.cluster.certificate_authority.0.data
-          server                     = data.aws_eks_cluster.cluster.endpoint
+          certificate-authority-data = module.eks.cluster_certificate_authority_data
+          server                     = module.eks.cluster_endpoint
         }
       }
     ]

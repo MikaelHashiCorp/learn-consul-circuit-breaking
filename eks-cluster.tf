@@ -1,20 +1,20 @@
-data "aws_eks_cluster" "cluster" {
-  name = module.eks.cluster_name
-}
-
 data "aws_eks_cluster_auth" "cluster" {
   name = module.eks.cluster_name
 }
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "19.20.0"
+  version = "~> 20.0"
 
   cluster_name    = local.cluster_name
-  cluster_version = "1.27"
+  cluster_version = "1.31"
 
   cluster_addons = {
-    aws-ebs-csi-driver = { most_recent = true }
+    aws-ebs-csi-driver = {
+      most_recent = true
+      resolve_conflicts_on_create = "OVERWRITE"
+      resolve_conflicts_on_update = "OVERWRITE"
+    }
   }
 
   vpc_id     = module.vpc.vpc_id
@@ -42,7 +42,7 @@ module "eks" {
     one = {
       name = "node-group-1"
 
-      instance_types = ["t3.medium"]
+      instance_types = ["t3a.medium"]
 
       min_size     = 1
       max_size     = 3

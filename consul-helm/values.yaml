@@ -16,6 +16,7 @@ global:
 server:
   enabled: true
   replicas: 3
+  storageClass: gp2
   extraConfig: |
     {
       "log_level": "TRACE"
