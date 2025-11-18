@@ -78,9 +78,9 @@ exec {
 Static tokens from `aws_eks_cluster_auth` data source expire during long-running operations.
 
 ### EKS Version Requirements
-AWS regularly deprecates older Kubernetes versions. As of Nov 2025, minimum supported version is 1.28. Always use the latest stable version (currently 1.31) in `eks-cluster.tf`:
+AWS regularly deprecates older Kubernetes versions. As of Nov 2025, minimum supported version is 1.28. Always use the latest stable version (currently 1.34) in `eks-cluster.tf`:
 ```terraform
-cluster_version = "1.31"  # Not 1.27 or earlier
+cluster_version = "1.34"  # Not 1.27 or earlier
 ```
 
 ### Storage Class Configuration
